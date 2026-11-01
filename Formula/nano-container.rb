@@ -1,9 +1,9 @@
 class NanoContainer < Formula
   desc "CLI-only container runtime for macOS on Virtualization.framework"
   homepage "https://github.com/MELOZ-TECH/nano-container"
-  url "https://github.com/MELOZ-TECH/nano-container/releases/download/v0.9.0/nanoc-v0.9.0-darwin-arm64.tar.gz"
-  sha256 "d05e65182d82bfe87da31493b5e21377a65d5fc2164b4b1425a341c1bddebecd"
-  version "0.9.0"
+  url "https://github.com/MELOZ-TECH/nano-container/releases/download/v0.10.0/nanoc-v0.10.0-darwin-arm64.tar.gz"
+  sha256 "c3aac4d2cc4212a3c6c9f9afffb65b61782237d4925ad2a8f03cd1f6eb18bb7e"
+  version "0.10.0"
   license "Apache-2.0"
 
   depends_on arch: :arm64
