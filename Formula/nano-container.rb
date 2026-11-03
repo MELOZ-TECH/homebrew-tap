@@ -19,10 +19,13 @@ class NanoContainer < Formula
       lib.install "lib/libkrun.2.dylib"
       pkgshare.install "build/krun.entitlements"
       entitlements = pkgshare/"krun.entitlements"
+      # licença do libkrun (Apache-2.0), distribuído com o pacote
+      doc.install "licenses/libkrun-LICENSE"
     end
     # o binário precisa dos entitlements (assinatura ad-hoc)
     system "codesign", "--force", "--sign", "-", "--entitlements", entitlements, bin/"nanoc"
     doc.install "README.md"
+    doc.install "THIRD_PARTY.md" if File.exist?("THIRD_PARTY.md")
   end
 
   def caveats
