@@ -11,10 +11,17 @@ class NanoContainer < Formula
 
   def install
     bin.install "nanoc"
-    entitlements = buildpath/"build/virt.entitlements"
-    # o binário precisa do entitlement de virtualização (assinatura ad-hoc)
-    system "codesign", "--force", "--sign", "-", "--entitlements", entitlements, bin/"nanoc"
     pkgshare.install "build/virt.entitlements"
+    entitlements = pkgshare/"virt.entitlements"
+    # pacotes com o backend libkrun trazem lib/libkrun.2.dylib, que o nanoc acha por
+    # rpath em ../lib, e os entitlements dos dois backends
+    if (buildpath/"lib/libkrun.2.dylib").exist?
+      lib.install "lib/libkrun.2.dylib"
+      pkgshare.install "build/krun.entitlements"
+      entitlements = pkgshare/"krun.entitlements"
+    end
+    # o binário precisa dos entitlements (assinatura ad-hoc)
+    system "codesign", "--force", "--sign", "-", "--entitlements", entitlements, bin/"nanoc"
     doc.install "README.md"
   end
 
